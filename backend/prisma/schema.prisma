@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  id        String   @id @default(uuid())
+  name      String
+  specialty String
+  appointments Appointment[]
+}
+
+model Appointment {
+  id          String   @id @default(uuid())
+  patientName String
+  date        DateTime
+  doctorId    String
+  doctor      Doctor   @relation(fields: [doctorId], references: [id])
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+}
