@@ -18,6 +18,30 @@ app.get('/doctors', async () => {
   return doctors;
 });
 
+
+// Маршрут для создания нового врача
+app.post<{ Body: { name: string; specialty: string } }>('/doctors', {
+    schema: {
+      body: {
+        type: 'object',
+        required: ['name', 'specialty'],
+        properties: {
+          name: { type: 'string' },
+          specialty: { type: 'string' }
+        }
+      }
+    }
+  }, async (request, reply) => {
+    const { name, specialty } = request.body;
+    
+    const doctor = await prisma.doctor.create({
+      data: { name, specialty }
+    });
+    
+    return reply.code(201).send(doctor);
+  });
+  
+
 const start = async () => {
   try {
     await app.listen({ port: 3000, host: '0.0.0.0' });

@@ -1,0 +1,14 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Настройки IDE (VS Code / IntelliJ)
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Логи на уровне корня
+*.log
+npm-debug.log*

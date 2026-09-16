@@ -1,5 +1,27 @@
-node_modules
-# Keep environment variables out of version control
-.env
+# Зависимости (стандарт)
+node_modules/
+.pnp
+.pnp.js
 
-/generated/prisma
+# Секреты (критично!)
+.env
+.env.local
+.env.production
+
+# Результаты сборки TypeScript
+dist/
+build/
+lib/
+
+# Prisma: сгенерированный клиент (пересоздается через npx prisma generate)
+generated/
+prisma/generated/
+
+# Временные БД (если будете тестировать SQLite локально)
+*.db
+*.sqlite
+
+# Покрытие тестов
+coverage/
+
+AGENTS.md
